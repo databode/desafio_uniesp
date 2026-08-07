@@ -1,0 +1,4 @@
+nome_municipio;codigo_unidade_gestora;descricao_unidade_gestora;cpf_cnpj;nome_servidor;tipo_cargo;descricao_cargo;valor_vantagem;data_admissao;matricula;ano_mes
+Cidade Alpha;000101;Prefeitura Municipal de Cidade Alpha;***.111.222-**;PESSOA FICTICIA UM;Efetivos;00000023 - ANALISTA;3.490,31;02/01/2025;000000000000028;202601
+Cidade Alpha;000101;Prefeitura Municipal de Cidade Alpha;***.333.444-**;PESSOA FICTICIA DOIS;Cargo Comissionado;00000024 - ASSESSOR;1.700;15/03/2024;000000000000029;202601
+Cidade Beta;000202;Câmara Municipal de Cidade Beta;***.555.666-**;PESSOA FICTICIA TRES;Eletivos;SEM CODIGO;2500;31/12/2023;000000000000030;202602

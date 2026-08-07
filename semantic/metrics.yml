@@ -1,0 +1,20 @@
+version: 1
+metrics:
+  valor_vantagem_total:
+    expression: SUM(valor_vantagem)
+    semantic_source: semantic views cast gold decimal strings to DuckDB DECIMAL(18,2)
+    note: Do not rename to salary/remuneration without official business definition.
+  valor_vantagem_medio:
+    expression: AVG(valor_vantagem)
+  valor_vantagem_mediano:
+    expression: MEDIAN(valor_vantagem)
+  quantidade_registros:
+    expression: COUNT(*)
+    grain: source record / vantagem row
+  matriculas_distintas:
+    expression: COUNT(DISTINCT matricula_key)
+    limitation: matrícula is a source identifier and must not be interpreted as confirmed unique people.
+  unidades_gestoras_distintas:
+    expression: COUNT(DISTINCT unidade_gestora_key)
+  municipios_distintos:
+    expression: COUNT(DISTINCT municipio_key)

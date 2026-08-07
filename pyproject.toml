@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uniesp-data-platform"
+version = "0.1.0"
+description = "Local educational mini data platform for UNIESP MBA data engineering demo"
+requires-python = ">=3.10"
+dependencies = [
+  "dagster>=1.8",
+  "dagster-webserver>=1.8",
+  "duckdb>=1.0",
+  "pandas>=2.0",
+  "pyarrow>=15",
+  "streamlit>=1.35",
+  "PyYAML>=6.0",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

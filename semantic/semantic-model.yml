@@ -1,0 +1,51 @@
+version: 1
+model: uniesp_servidores
+engine: duckdb
+database: data/semantic/uniesp.duckdb
+schemas:
+  gold: physical analytical tables generated from Parquet
+  semantic: stable views for consumers
+entities:
+  municipio:
+    table: gold.dim_municipio
+    primary_key: municipio_key
+    dimensions: [nome_municipio]
+  unidade_gestora:
+    table: gold.dim_unidade_gestora
+    primary_key: unidade_gestora_key
+    dimensions: [codigo_unidade_gestora, descricao_unidade_gestora, nome_municipio]
+  cargo:
+    table: gold.dim_cargo
+    primary_key: cargo_key
+    grain: one observed cargo classification combination from the source
+    dimensions: [codigo_cargo, descricao_cargo_limpa, descricao_cargo, tipo_cargo]
+    notes:
+      - descricao_cargo original is preserved.
+      - tipo_cargo is part of the dimension because the same cargo description can occur under different cargo types.
+  matricula:
+    table: gold.dim_matricula
+    primary_key: matricula_key
+    dimensions: [matricula]
+    limitations:
+      - matricula is a source identifier and is not proven to identify a unique person globally.
+      - cpf_cnpj is masked, is not part of this dimension, and must not be reconstructed or exposed in dashboards.
+  vantagens:
+    table: gold.fct_vantagens
+    grain: one source record representing a valor_vantagem; not one unique person/server
+    measures: [valor_vantagem]
+relationships:
+  - from: gold.fct_vantagens.municipio_key
+    to: gold.dim_municipio.municipio_key
+  - from: gold.fct_vantagens.unidade_gestora_key
+    to: gold.dim_unidade_gestora.unidade_gestora_key
+  - from: gold.fct_vantagens.cargo_key
+    to: gold.dim_cargo.cargo_key
+  - from: gold.fct_vantagens.matricula_key
+    to: gold.dim_matricula.matricula_key
+consumer_views:
+  - semantic.vw_overview
+  - semantic.vw_municipios
+  - semantic.vw_unidades_gestoras
+  - semantic.vw_cargos
+  - semantic.vw_evolucao_mensal
+  - semantic.vw_data_quality
