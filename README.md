@@ -100,6 +100,14 @@ python -m pytest
 
 O dashboard não mostra rankings individuais, nomes de pessoas ou CPF/CNPJ. As análises são agregadas por município, unidade gestora, tipo/cargo e qualidade dos dados.
 
+## Fonte e proveniência dos dados
+
+O dataset utilizado neste projeto foi obtido a partir do SAGRES/PB, sistema público de disponibilização de informações governamentais da Paraíba. Os dados utilizados na demonstração têm origem em informações públicas acessíveis aos cidadãos.
+
+O arquivo presente em `source_data/` é utilizado exclusivamente como fonte de referência para fins educacionais e para demonstração dos conceitos de Engenharia e Arquitetura de Dados apresentados neste projeto.
+
+Este repositório não busca alterar, enriquecer ou reidentificar informações pessoais presentes na fonte. As visualizações da aplicação priorizam dados agregados e não apresentam rankings individuais, CPF/CNPJ ou exposição de pessoas.
+
 ## Semântica importante
 
 A coluna `valor_vantagem` não foi renomeada para salário/remuneração porque não há documentação oficial no workspace que autorize essa interpretação.
